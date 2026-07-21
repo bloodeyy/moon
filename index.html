@@ -1,0 +1,280 @@
+html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Bot - Official Page</title>
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0b0f19; /* Dark space theme for 'Moon' */
+            color: #e2e8f0;
+            overflow-x: hidden; /* Prevents horizontal scroll */
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        /* Glow Effect for Avatar */
+        .avatar-glow {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- CONFIGURATION SECTION (EDIT THIS)          -->
+    <!-- ========================================== -->
+    <script>
+        const BOT_CONFIG = {
+            botName: "Moon",
+            // Add your bot's avatar direct link below
+            avatarURL: "https://ui-avatars.com/api/?name=Moon&background=0D8ABC&color=fff&size=256", 
+            // Add your bot's invite link below
+            inviteLink: "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot",
+            // Add your support server link below
+            supportServer: "https://discord.gg/your-support-server"
+        };
+    </script>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 bg-[#0b0f19] border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo/Bot Name -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img id="nav-avatar" src="" alt="Bot Avatar" class="w-8 h-8 rounded-full border border-blue-500">
+                    <span id="nav-bot-name" class="font-bold text-xl tracking-wider text-white">Moon</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#guide" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Guide</a>
+                        <a href="#tos" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Terms</a>
+                        <a href="#privacy" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Privacy</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0f1523] border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#guide" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Guide</a>
+                <a href="#tos" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Terms</a>
+                <a href="#privacy" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Privacy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Home) -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-4xl w-full space-y-8 text-center relative z-10">
+            <div class="flex justify-center">
+                <img id="hero-avatar" src="" alt="Moon Bot" class="w-32 h-32 md:w-40 md:h-40 rounded-full avatar-glow border-4 border-gray-800">
+            </div>
+            
+            <div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+                    Meet <span id="hero-bot-name" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Moon</span>
+                </h1>
+                <p class="mt-3 text-base md:text-xl text-gray-400 max-w-2xl mx-auto">
+                    The ultimate companion for your server. Moderation, fun, and utility all in one place. Invite now and level up your community.
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <a id="btn-invite" href="#" target="_blank" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30">
+                    <i class="fab fa-discord mr-2"></i> Invite Bot
+                </a>
+                <a id="btn-support" href="#" target="_blank" class="flex items-center justify-center px-8 py-3 border border-gray-600 text-base font-medium rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 hover:border-gray-500 md:py-4 md:text-lg md:px-10 transition-all">
+                    <i class="fas fa-headset mr-2"></i> Support Server
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="py-20 bg-[#0f1523]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-book-open text-blue-500 mr-3"></i>User Guide</h2>
+                <p class="mt-4 text-lg text-gray-400">Everything you need to know to get started with Moon bot.</p>
+            </div>
+            
+            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl">
+                <div class="space-y-6 text-gray-300 leading-relaxed">
+                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2">1. Getting Started</h3>
+                    <p>First, invite Moon to your server by clicking the "Invite Bot" button. Ensure that you grant the bot the necessary permissions so it can function properly in your server.</p>
+                    
+                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2 mt-6">2. Basic Commands</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/help</code> - Displays a list of all available bot commands.</li>
+                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/ping</code> - Checks the bot's current speed and API latency.</li>
+                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/setup</code> - Configures basic settings and modules for your server.</li>
+                    </ul>
+                    
+                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2 mt-6">3. Need Help?</h3>
+                    <p>If you encounter any issues while using a command, or if the bot goes offline, feel free to join our Support Server and reach out to our staff team for assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms of Service (ToS) Section -->
+    <section id="tos" class="py-20 bg-[#0b0f19]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-file-contract text-blue-500 mr-3"></i>Terms of Service</h2>
+                <p class="mt-4 text-lg text-gray-400">Rules and conditions for using our services.</p>
+            </div>
+            
+            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl text-gray-300 space-y-6">
+                <p class="text-sm text-gray-500">Last updated: Today</p>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">1. Agreement to Terms</h4>
+                    <p>By inviting or using the Moon bot in your server, you agree to abide by these Terms of Service. If you do not agree with any part of these terms, please remove the bot from your server immediately.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">2. Usage Rules</h4>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>The bot cannot be used for any illegal activities or to violate Discord's Terms of Service.</li>
+                        <li>Using the bot to spam channels or abuse the Discord API is strictly prohibited.</li>
+                        <li>We reserve the right to blacklist users or remove the bot from any server without prior notice if these rules are broken.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">3. Service Availability</h4>
+                    <p>We strive to keep the bot online 24/7. However, the bot may occasionally experience downtime due to maintenance, updates, or hosting issues. We do not provide any absolute guarantees regarding uptime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="py-20 bg-[#0f1523]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-shield-alt text-blue-500 mr-3"></i>Privacy Policy</h2>
+                <p class="mt-4 text-lg text-gray-400">How we handle and protect your data.</p>
+            </div>
+            
+            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl text-gray-300 space-y-6">
+                <p class="text-sm text-gray-500">Last updated: Today</p>
+                
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">1. Data Collection</h4>
+                    <p>Moon bot only collects the data necessary for its core features to function correctly. This data includes:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Server IDs and Channel IDs (used to save server-specific configurations)</li>
+                        <li>User IDs (used for command execution logs and leveling systems, if applicable)</li>
+                        <li>We do <strong>not</strong> read, store, or log any personal direct messages (DMs) or general chat messages unless explicitly required for a specific moderation command.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">2. Data Security</h4>
+                    <p>Your data is securely stored in our databases. We value your privacy and assure you that your data is never sold, traded, or shared with any third-party companies or individuals.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2">3. Data Deletion</h4>
+                    <p>If you wish to have all your server's data completely wiped from our database, you can kick the bot from your server and open a data deletion request ticket in our support server.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#080b12] py-8 border-t border-gray-800 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <img id="footer-avatar" src="" alt="Bot" class="w-6 h-6 rounded-full">
+                <span id="footer-bot-name" class="font-bold text-white">Moon</span>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; <span id="year"></span> Moon Bot. All rights reserved.<br>
+                Not affiliated with Discord.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Config Injection & Interactivity -->
+    <script>
+        // Apply Config Values to HTML Elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply Bot Names
+            document.getElementById('nav-bot-name').innerText = BOT_CONFIG.botName;
+            document.getElementById('hero-bot-name').innerText = BOT_CONFIG.botName;
+            document.getElementById('footer-bot-name').innerText = BOT_CONFIG.botName;
+            document.title = BOT_CONFIG.botName + " - Official Page";
+
+            // Apply Avatar URLs
+            document.getElementById('nav-avatar').src = BOT_CONFIG.avatarURL;
+            document.getElementById('hero-avatar').src = BOT_CONFIG.avatarURL;
+            document.getElementById('footer-avatar').src = BOT_CONFIG.avatarURL;
+
+            // Apply Links
+            document.getElementById('btn-invite').href = BOT_CONFIG.inviteLink;
+            document.getElementById('btn-support').href = BOT_CONFIG.supportServer;
+
+            // Set Current Year in Footer
+            document.getElementById('year').innerText = new Date().getFullYear();
+        });
+
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = menu.querySelectorAll('a');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
