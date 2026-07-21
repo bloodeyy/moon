@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moon Bot - Official Page</title>
     
     <!-- Tailwind CSS for Styling -->
@@ -12,14 +12,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-main: #060913;
+            --bg-sec: #0b1120;
+            --accent: #3b82f6;
+        }
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0b0f19; /* Dark space theme for 'Moon' */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
             color: #e2e8f0;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden; /* Strictly prevents horizontal scroll */
         }
         
         /* Custom Scrollbar */
@@ -27,239 +33,386 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0b0f19;
+            background: var(--bg-main);
         }
         ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 4px;
+            background: var(--accent);
+            border-radius: 10px;
         }
         
-        /* Glow Effect for Avatar */
+        /* Glassmorphism & Glow Effects */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
         .avatar-glow {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white">
 
     <!-- ========================================== -->
-    <!-- CONFIGURATION SECTION (EDIT THIS)          -->
+    <!-- CONFIGURATION SECTION (EASY SETUP)         -->
     <!-- ========================================== -->
     <script>
         const BOT_CONFIG = {
             botName: "Moon",
-            // Add your bot's avatar direct link below
             avatarURL: "https://ui-avatars.com/api/?name=Moon&background=0D8ABC&color=fff&size=256", 
-            // Add your bot's invite link below
             inviteLink: "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot",
-            // Add your support server link below
-            supportServer: "https://discord.gg/your-support-server"
+            supportServer: "https://discord.gg/your-support-server",
+            prefix: "/", // Examples: /, !, m!, ?
+            developer: "YourName",
+            stats: {
+                guilds: "1,250+",
+                users: "45,000+",
+                commands: "120+"
+            }
         };
     </script>
 
     <!-- Navigation Bar -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-opacity-80 bg-[#0b0f19] border-b border-gray-800">
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-card border-b border-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo/Bot Name -->
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img id="nav-avatar" src="" alt="Bot Avatar" class="w-8 h-8 rounded-full border border-blue-500">
-                    <span id="nav-bot-name" class="font-bold text-xl tracking-wider text-white">Moon</span>
+                    <img id="nav-avatar" src="" alt="Bot Avatar" class="w-10 h-10 rounded-full border-2 border-blue-500/50">
+                    <span id="nav-bot-name" class="font-bold text-2xl tracking-wide text-white">Moon</span>
                 </div>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
-                        <a href="#guide" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Guide</a>
-                        <a href="#tos" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Terms</a>
-                        <a href="#privacy" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Privacy</a>
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#home" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Home</a>
+                        <a href="#features" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Commands</a>
+                        <a href="#tos" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Terms</a>
+                        <a href="#privacy" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Privacy</a>
+                        <a id="nav-invite" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/20">Invite Bot</a>
                     </div>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#0f1523] border-b border-gray-800">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#home" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#guide" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Guide</a>
-                <a href="#tos" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Terms</a>
-                <a href="#privacy" class="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium">Privacy</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-gray-800/50">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#home" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium">Home</a>
+                <a href="#features" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium">Commands</a>
+                <a href="#tos" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium">Terms</a>
+                <a href="#privacy" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium">Privacy</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Home) -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <!-- Background decorative elements -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center pt-28 pb-12 px-4 sm:px-6 lg:px-8 relative w-full">
+        <!-- Background Effects -->
+        <div class="absolute top-1/3 left-1/4 w-72 md:w-96 h-72 md:h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 md:w-96 h-72 md:h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[150px] opacity-20"></div>
 
-        <div class="max-w-4xl w-full space-y-8 text-center relative z-10">
-            <div class="flex justify-center">
-                <img id="hero-avatar" src="" alt="Moon Bot" class="w-32 h-32 md:w-40 md:h-40 rounded-full avatar-glow border-4 border-gray-800">
+        <div class="max-w-5xl w-full text-center relative z-10">
+            
+            <!-- Badges -->
+            <div class="flex justify-center gap-3 mb-8 flex-wrap">
+                <span class="px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold flex items-center gap-2">
+                    <i class="fas fa-terminal"></i> Prefix: <span id="hero-prefix" class="text-white"></span>
+                </span>
+                <span class="px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-semibold flex items-center gap-2">
+                    <i class="fas fa-code"></i> Developer: <span id="hero-dev" class="text-white"></span>
+                </span>
+            </div>
+
+            <!-- Avatar & Titles -->
+            <div class="flex justify-center mb-8">
+                <img id="hero-avatar" src="" alt="Moon Bot" class="w-36 h-36 md:w-44 md:h-44 rounded-full avatar-glow border-4 border-gray-800">
             </div>
             
-            <div>
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
-                    Meet <span id="hero-bot-name" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Moon</span>
-                </h1>
-                <p class="mt-3 text-base md:text-xl text-gray-400 max-w-2xl mx-auto">
-                    The ultimate companion for your server. Moderation, fun, and utility all in one place. Invite now and level up your community.
-                </p>
-            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
+                Meet <span id="hero-bot-name" class="text-gradient">Moon</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+                The only Discord companion you will ever need. Featuring advanced moderation, utility, and ultimate server tools.
+            </p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-                <a id="btn-invite" href="#" target="_blank" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30">
-                    <i class="fab fa-discord mr-2"></i> Invite Bot
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a id="btn-invite" href="#" target="_blank" class="flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl text-white bg-blue-600 hover:bg-blue-500 transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-500/30">
+                    <i class="fab fa-discord mr-3 text-xl"></i> Add to Discord
                 </a>
-                <a id="btn-support" href="#" target="_blank" class="flex items-center justify-center px-8 py-3 border border-gray-600 text-base font-medium rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 hover:border-gray-500 md:py-4 md:text-lg md:px-10 transition-all">
-                    <i class="fas fa-headset mr-2"></i> Support Server
+                <a id="btn-support" href="#" target="_blank" class="flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl text-gray-300 bg-white/5 hover:bg-white/10 border border-gray-700 hover:border-gray-500 transition-all transform hover:-translate-y-1">
+                    <i class="fas fa-headset mr-3 text-xl"></i> Support Server
                 </a>
             </div>
         </div>
+
+        <!-- Stats Section -->
+        <div class="max-w-5xl w-full mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 px-4">
+            <div class="glass-card rounded-2xl p-6 text-center transform hover:scale-105 transition-transform">
+                <div class="text-blue-400 text-3xl mb-3"><i class="fas fa-server"></i></div>
+                <h3 id="stat-guilds" class="text-3xl font-extrabold text-white mb-1">0</h3>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-sm">Servers</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center transform hover:scale-105 transition-transform">
+                <div class="text-purple-400 text-3xl mb-3"><i class="fas fa-users"></i></div>
+                <h3 id="stat-users" class="text-3xl font-extrabold text-white mb-1">0</h3>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-sm">Total Users</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center transform hover:scale-105 transition-transform">
+                <div class="text-green-400 text-3xl mb-3"><i class="fas fa-terminal"></i></div>
+                <h3 id="stat-commands" class="text-3xl font-extrabold text-white mb-1">0</h3>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-sm">Commands</p>
+            </div>
+        </div>
     </section>
 
-    <!-- Guide Section -->
-    <section id="guide" class="py-20 bg-[#0f1523]">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-book-open text-blue-500 mr-3"></i>User Guide</h2>
-                <p class="mt-4 text-lg text-gray-400">Everything you need to know to get started with Moon bot.</p>
+    <!-- Features & Command Preview Section -->
+    <section id="features" class="py-24 bg-[var(--bg-sec)] w-full">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-white md:text-5xl tracking-tight mb-4">
+                    Powerful <span class="text-gradient">Features</span>
+                </h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Explore everything the bot has to offer with our easy-to-use commands and modules.</p>
             </div>
             
-            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl">
-                <div class="space-y-6 text-gray-300 leading-relaxed">
-                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2">1. Getting Started</h3>
-                    <p>First, invite Moon to your server by clicking the "Invite Bot" button. Ensure that you grant the bot the necessary permissions so it can function properly in your server.</p>
-                    
-                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2 mt-6">2. Basic Commands</h3>
-                    <ul class="list-disc pl-5 space-y-2">
-                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/help</code> - Displays a list of all available bot commands.</li>
-                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/ping</code> - Checks the bot's current speed and API latency.</li>
-                        <li><code class="bg-gray-800 px-2 py-1 rounded text-blue-400">/setup</code> - Configures basic settings and modules for your server.</li>
-                    </ul>
-                    
-                    <h3 class="text-xl font-semibold text-white border-b border-gray-700 pb-2 mt-6">3. Need Help?</h3>
-                    <p>If you encounter any issues while using a command, or if the bot goes offline, feel free to join our Support Server and reach out to our staff team for assistance.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Mod Card -->
+                <div class="glass-card rounded-3xl p-8 hover:border-blue-500/30 transition-colors group">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+                        <i class="fas fa-shield-halved text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Moderation</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">Keep your server safe with advanced moderation tools, anti-spam, and detailed logging systems.</p>
+                    <div class="space-y-3">
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>ban <span class="text-gray-500">&lt;user&gt; [reason]</span>
+                        </div>
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>mute <span class="text-gray-500">&lt;user&gt; &lt;time&gt;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Utility Card -->
+                <div class="glass-card rounded-3xl p-8 hover:border-purple-500/30 transition-colors group">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
+                        <i class="fas fa-tools text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Server Utility</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">Enhance your server with essential tools, fetch detailed server stats, and manage info easily.</p>
+                    <div class="space-y-3">
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>ping
+                        </div>
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>serverinfo
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Most Useful Card (Changed from Economy) -->
+                <div class="glass-card rounded-3xl p-8 hover:border-green-500/30 transition-colors group">
+                    <div class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
+                        <i class="fas fa-fire text-2xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Most Useful</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">Access powerful tools to get detailed information about custom vanities and server users.</p>
+                    <div class="space-y-3">
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>vanityinfo <span class="text-gray-500">&lt;vanity&gt;</span>
+                        </div>
+                        <div class="bg-black/30 rounded-lg p-3 text-sm font-mono text-gray-300 border border-white/5">
+                            <span class="text-blue-400 prefix-display"></span>userinfo <span class="text-gray-500">[@user]</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Terms of Service (ToS) Section -->
-    <section id="tos" class="py-20 bg-[#0b0f19]">
+    <!-- Terms of Service (Detailed) -->
+    <section id="tos" class="py-24 bg-[var(--bg-main)] w-full">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-file-contract text-blue-500 mr-3"></i>Terms of Service</h2>
-                <p class="mt-4 text-lg text-gray-400">Rules and conditions for using our services.</p>
+            <div class="mb-14">
+                <h2 class="text-3xl font-extrabold text-white md:text-5xl mb-4">Terms of <span class="text-gradient">Service</span></h2>
+                <p class="text-gray-500 font-medium">Effective Date: January 1, 2024</p>
             </div>
             
-            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl text-gray-300 space-y-6">
-                <p class="text-sm text-gray-500">Last updated: Today</p>
+            <div class="prose prose-invert max-w-none text-gray-300 space-y-10">
                 
+                <!-- Clause 1 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">1. Agreement to Terms</h4>
-                    <p>By inviting or using the Moon bot in your server, you agree to abide by these Terms of Service. If you do not agree with any part of these terms, please remove the bot from your server immediately.</p>
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-800 pb-2">1. Acceptance of Terms</h3>
+                    <p class="leading-relaxed">
+                        By inviting, accessing, or using the Moon Bot ("the Service", "the Bot"), you agree to be bound by these Terms of Service. If you disagree with any part of the terms, you may not access the Service. These terms apply to all servers, server owners, administrators, and general users interacting with the bot.
+                    </p>
                 </div>
 
+                <!-- Clause 2 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">2. Usage Rules</h4>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li>The bot cannot be used for any illegal activities or to violate Discord's Terms of Service.</li>
-                        <li>Using the bot to spam channels or abuse the Discord API is strictly prohibited.</li>
-                        <li>We reserve the right to blacklist users or remove the bot from any server without prior notice if these rules are broken.</li>
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-800 pb-2">2. Description of Service</h3>
+                    <p class="leading-relaxed mb-3">
+                        Moon provides a variety of tools for Discord servers, including but not limited to moderation, logging, entertainment, and utility functions. We reserve the right to modify, suspend, or discontinue any part of the Service at any time without prior notice.
+                    </p>
+                </div>
+
+                <!-- Clause 3 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-800 pb-2">3. User Conduct & Restrictions</h3>
+                    <p class="leading-relaxed mb-3">When using the Bot, you strictly agree NOT to:</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                        <li>Use the Bot for any illegal purposes or to violate Discord's official Terms of Service and Community Guidelines.</li>
+                        <li>Intentionally spam commands, attempt to crash the bot, or exploit bugs/vulnerabilities.</li>
+                        <li>Use the bot to harass, threaten, or distribute malicious content.</li>
+                        <li>Attempt to reverse engineer, copy, or distribute the Bot's proprietary code or assets.</li>
                     </ul>
+                    <p class="leading-relaxed mt-3 text-red-400 text-sm">
+                        * Violation of these rules will result in an immediate and permanent blacklist from using the Bot.
+                    </p>
                 </div>
 
+                <!-- Clause 4 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">3. Service Availability</h4>
-                    <p>We strive to keep the bot online 24/7. However, the bot may occasionally experience downtime due to maintenance, updates, or hosting issues. We do not provide any absolute guarantees regarding uptime.</p>
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-800 pb-2">4. Limitation of Liability</h3>
+                    <p class="leading-relaxed">
+                        The Bot is provided on an "AS IS" and "AS AVAILABLE" basis. The developers of Moon shall not be held liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the bot. We are not responsible for administrative actions taken by the bot resulting from user configurations (e.g., accidental bans).
+                    </p>
                 </div>
+
+                <!-- Clause 5 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-800 pb-2">5. Changes to Terms</h3>
+                    <p class="leading-relaxed">
+                        We reserve the right to update or modify these terms at any time. Any significant changes will be announced in our Support Server. Continued use of the Bot after changes constitutes your acceptance of the new Terms.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="py-20 bg-[#0f1523]">
+    <!-- Privacy Policy (Detailed) -->
+    <section id="privacy" class="py-24 bg-[var(--bg-sec)] w-full">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl"><i class="fas fa-shield-alt text-blue-500 mr-3"></i>Privacy Policy</h2>
-                <p class="mt-4 text-lg text-gray-400">How we handle and protect your data.</p>
+            <div class="mb-14">
+                <h2 class="text-3xl font-extrabold text-white md:text-5xl mb-4">Privacy <span class="text-gradient">Policy</span></h2>
+                <p class="text-gray-500 font-medium">Protecting your digital footprint.</p>
             </div>
             
-            <div class="bg-[#1a2234] rounded-2xl p-6 md:p-8 border border-gray-800 shadow-xl text-gray-300 space-y-6">
-                <p class="text-sm text-gray-500">Last updated: Today</p>
+            <div class="glass-card rounded-3xl p-6 md:p-10 text-gray-300 space-y-10">
                 
+                <!-- Clause 1 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">1. Data Collection</h4>
-                    <p>Moon bot only collects the data necessary for its core features to function correctly. This data includes:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li>Server IDs and Channel IDs (used to save server-specific configurations)</li>
-                        <li>User IDs (used for command execution logs and leveling systems, if applicable)</li>
-                        <li>We do <strong>not</strong> read, store, or log any personal direct messages (DMs) or general chat messages unless explicitly required for a specific moderation command.</li>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2"><i class="fas fa-database text-blue-400"></i> Information We Collect</h3>
+                    <p class="leading-relaxed mb-3">To provide its features, the Bot automatically collects and stores specific necessary data provided by the Discord API:</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-400">
+                        <li><strong>Server Data:</strong> Guild IDs, Channel IDs, and Role IDs required to save your specific server configurations (e.g., welcome channels, mute roles).</li>
+                        <li><strong>User Data:</strong> User IDs to track economy balances, levels, and command cooldowns.</li>
+                        <li><strong>Message Content:</strong> We DO NOT log, store, or track general chat messages or Direct Messages. Message content is only temporarily processed in memory when executing a command and is immediately discarded.</li>
                     </ul>
                 </div>
 
+                <!-- Clause 2 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">2. Data Security</h4>
-                    <p>Your data is securely stored in our databases. We value your privacy and assure you that your data is never sold, traded, or shared with any third-party companies or individuals.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2"><i class="fas fa-tasks text-purple-400"></i> How We Use Your Information</h3>
+                    <p class="leading-relaxed">
+                        The collected data is strictly used for the operational functionality of the bot. This includes executing commands, maintaining leaderboards, enforcing server moderation rules setup by admins, and identifying bugs or errors to improve service stability.
+                    </p>
                 </div>
 
+                <!-- Clause 3 -->
                 <div>
-                    <h4 class="text-lg font-bold text-white mb-2">3. Data Deletion</h4>
-                    <p>If you wish to have all your server's data completely wiped from our database, you can kick the bot from your server and open a data deletion request ticket in our support server.</p>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2"><i class="fas fa-share-nodes text-green-400"></i> Data Sharing & Third Parties</h3>
+                    <p class="leading-relaxed">
+                        <strong>We do not sell, trade, or rent your personal identification information to others.</strong> Data is only accessible to the bot's core development team for maintenance purposes. We do not use third-party tracking or advertising services within the bot.
+                    </p>
+                </div>
+
+                <!-- Clause 4 -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-2"><i class="fas fa-trash-can text-red-400"></i> Data Retention and Deletion</h3>
+                    <p class="leading-relaxed">
+                        Data associated with a server is kept as long as the bot remains in the server. If the bot is kicked or removed, server-specific configuration data is typically purged from our active databases within 30 days. Users may also request immediate manual deletion of their data by joining our Support Server and opening a ticket.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#080b12] py-8 border-t border-gray-800 text-center">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <img id="footer-avatar" src="" alt="Bot" class="w-6 h-6 rounded-full">
-                <span id="footer-bot-name" class="font-bold text-white">Moon</span>
+    <footer class="bg-[#04060c] py-10 border-t border-gray-800/50 w-full">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="flex items-center gap-3">
+                <img id="footer-avatar" src="" alt="Bot" class="w-8 h-8 rounded-full">
+                <span class="font-extrabold text-xl text-white tracking-wide"><span id="footer-bot-name">Moon</span> Bot</span>
             </div>
-            <p class="text-gray-500 text-sm">
-                &copy; <span id="year"></span> Moon Bot. All rights reserved.<br>
-                Not affiliated with Discord.
-            </p>
+            
+            <div class="text-gray-500 text-sm text-center md:text-left">
+                &copy; <span id="year"></span> Created by <span id="footer-dev" class="text-blue-400 font-semibold"></span>. All rights reserved.<br>
+                <span class="text-xs">Not affiliated with or endorsed by Discord Inc.</span>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="#tos" class="text-gray-500 hover:text-white transition-colors text-sm">Terms</a>
+                <a href="#privacy" class="text-gray-500 hover:text-white transition-colors text-sm">Privacy</a>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Config Injection & Interactivity -->
+    <!-- JavaScript for Dynamic Injection -->
     <script>
-        // Apply Config Values to HTML Elements
         document.addEventListener('DOMContentLoaded', () => {
-            // Apply Bot Names
-            document.getElementById('nav-bot-name').innerText = BOT_CONFIG.botName;
-            document.getElementById('hero-bot-name').innerText = BOT_CONFIG.botName;
-            document.getElementById('footer-bot-name').innerText = BOT_CONFIG.botName;
-            document.title = BOT_CONFIG.botName + " - Official Page";
+            // Apply Basic Info
+            const botNames = document.querySelectorAll('#nav-bot-name, #hero-bot-name, #footer-bot-name');
+            botNames.forEach(el => el.innerText = BOT_CONFIG.botName);
+            document.title = `${BOT_CONFIG.botName} - Multipurpose Discord Bot`;
 
-            // Apply Avatar URLs
+            // Apply Images
             document.getElementById('nav-avatar').src = BOT_CONFIG.avatarURL;
             document.getElementById('hero-avatar').src = BOT_CONFIG.avatarURL;
             document.getElementById('footer-avatar').src = BOT_CONFIG.avatarURL;
 
             // Apply Links
             document.getElementById('btn-invite').href = BOT_CONFIG.inviteLink;
+            document.getElementById('nav-invite').href = BOT_CONFIG.inviteLink;
             document.getElementById('btn-support').href = BOT_CONFIG.supportServer;
 
-            // Set Current Year in Footer
+            // Apply Developer & Prefix Info
+            document.getElementById('hero-prefix').innerText = BOT_CONFIG.prefix;
+            document.getElementById('hero-dev').innerText = BOT_CONFIG.developer;
+            document.getElementById('footer-dev').innerText = BOT_CONFIG.developer;
+            
+            // Apply Config Prefix to command examples
+            const prefixDisplays = document.querySelectorAll('.prefix-display');
+            prefixDisplays.forEach(el => el.innerText = BOT_CONFIG.prefix);
+
+            // Apply Stats
+            document.getElementById('stat-guilds').innerText = BOT_CONFIG.stats.guilds;
+            document.getElementById('stat-users').innerText = BOT_CONFIG.stats.users;
+            document.getElementById('stat-commands').innerText = BOT_CONFIG.stats.commands;
+
+            // Set Current Year
             document.getElementById('year').innerText = new Date().getFullYear();
         });
 
-        // Mobile Menu Toggle Logic
+        // Mobile Menu Logic
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const mobileLinks = menu.querySelectorAll('a');
@@ -268,7 +421,6 @@
             menu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
