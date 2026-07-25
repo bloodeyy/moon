@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting... | Moon Bot</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #060913;
+            color: white;
+            overflow: hidden;
+        }
+        .avatar-glow {
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.6);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative">
+
+    <!-- CONFIGURATION -->
+    <script>
+        const BOT_CONFIG = {
+            botName: "Moon",
+            avatarURL: "https://cdn.discordapp.com/attachments/1529745932709531688/1530501409928249435/5c114a471b04238512080c445d417633.webp.jpg?ex=6a65ce03&is=6a647c83&hm=8ebf6c36bbc33bb44d67a388081036e67076922b89326607580d659006c909bc&", 
+            inviteLink: "https://discord.com/oauth2/authorize?client_id=1510641116528250990&permissions=8&scope=bot"
+        };
+    </script>
+
+    <!-- Background Elements -->
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[150px] opacity-30"></div>
+
+    <!-- Redirect UI -->
+    <div class="glass-card rounded-3xl p-10 md:p-16 text-center max-w-lg w-full mx-4 relative z-10 flex flex-col items-center border-t border-blue-500/30">
+        
+        <div class="relative mb-8">
+            <div class="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-50 animate-ping"></div>
+            <img id="bot-avatar" src="" alt="Bot Logo" class="w-28 h-28 rounded-full border-4 border-gray-800 relative z-10 avatar-glow object-cover">
+        </div>
+
+        <h1 class="text-3xl font-extrabold mb-3">Taking you to Discord...</h1>
+        <p class="text-gray-400 mb-8 flex items-center gap-2 justify-center">
+            <i class="fas fa-circle-notch fa-spin text-blue-500"></i> Preparing <span id="bot-name-display" class="text-white font-semibold">Moon</span>'s invite link
+        </p>
+
+        <a id="manual-btn" href="#" class="text-sm font-medium text-blue-400 hover:text-blue-300 underline transition-colors">
+            Click here if you are not redirected automatically
+        </a>
+    </div>
+
+    <!-- Redirect Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup images and text
+            document.getElementById('bot-avatar').src = BOT_CONFIG.avatarURL;
+            document.getElementById('bot-name-display').innerText = BOT_CONFIG.botName;
+            document.getElementById('manual-btn').href = BOT_CONFIG.inviteLink;
+
+            // Auto Redirect after 1.5 seconds (gives time for user to see the cool animation)
+            setTimeout(() => {
+                window.location.href = BOT_CONFIG.inviteLink;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
