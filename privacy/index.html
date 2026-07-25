@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Privacy Policy | Moon Bot</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #060913;
+            --bg-sec: #0b1120;
+            --accent: #3b82f6;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- CONFIGURATION -->
+    <script>
+        const BOT_CONFIG = {
+            botName: "Moon",
+            avatarURL: "https://cdn.discordapp.com/attachments/1529745932709531688/1530501409928249435/5c114a471b04238512080c445d417633.webp.jpg?ex=6a65ce03&is=6a647c83&hm=8ebf6c36bbc33bb44d67a388081036e67076922b89326607580d659006c909bc&", 
+            developer: "@fewdust"
+        };
+    </script>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-card border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+                    <img id="nav-avatar" src="" alt="Bot Avatar" class="w-10 h-10 rounded-full border-2 border-blue-500/50 object-cover">
+                    <span id="nav-bot-name" class="font-bold text-2xl tracking-wide text-white">Moon</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-6">
+                        <a href="/" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Home</a>
+                        <a href="/#features" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Commands</a>
+                        <a href="/terms" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Terms</a>
+                        <a href="/privacy" class="text-blue-400 px-3 py-2 rounded-md text-sm font-semibold transition-colors">Privacy</a>
+                        <a href="/invite" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40">
+                            Add to Discord
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-gray-800/50 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="/" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium text-gray-300">Home</a>
+                <a href="/#features" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium text-gray-300">Commands</a>
+                <a href="/terms" class="hover:bg-white/5 block px-3 py-3 rounded-lg text-base font-medium text-gray-300">Terms</a>
+                <a href="/privacy" class="text-blue-400 block px-3 py-3 rounded-lg text-base font-medium">Privacy</a>
+                <a href="/invite" class="bg-blue-600 block px-3 py-3 rounded-lg text-white font-bold mt-4 shadow-lg shadow-blue-500/20">Add to Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="pt-32 pb-10 bg-[var(--bg-sec)] relative overflow-hidden border-b border-gray-800/50">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full mix-blend-screen filter blur-[100px]"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Privacy <span class="text-gradient">Policy</span></h1>
+            <p class="text-gray-400 text-lg">How we collect, use, and protect your data.</p>
+            <div class="mt-6 inline-block bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-1.5">
+                <p class="text-purple-400 text-sm font-semibold"><i class="fas fa-shield-alt mr-2"></i>Last Updated: July 25, 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 w-full max-w-4xl mx-auto">
+        <div class="glass-card rounded-3xl p-6 md:p-12 shadow-2xl space-y-12 text-gray-300">
+            
+            <!-- Welcome Note -->
+            <div class="text-lg leading-relaxed text-gray-400 border-l-4 border-purple-500 pl-4 bg-purple-500/5 p-4 rounded-r-xl">
+                Your privacy is extremely important to us. This Privacy Policy explains what information Moon Bot collects from your Discord server and its users, why we need it, and how we keep it safe. 
+            </div>
+
+            <!-- Section 1 -->
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="bg-blue-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-lg shadow-blue-500/30"><i class="fas fa-database"></i></span>
+                    Information We Collect
+                </h2>
+                <p class="pl-11 text-gray-400">To provide its core functionality, Moon Bot collects and processes the following data automatically provided by the Discord API:</p>
+                <div class="space-y-3 pl-11">
+                    <p><strong>1.1. Server Data:</strong> Guild IDs, Channel IDs, and Role IDs. This is required to save server-specific settings such as welcome channels, mute roles, and logging configurations.</p>
+                    <p><strong>1.2. User Data:</strong> User IDs and basic profile information (like usernames/avatars) when commands are executed. This is used for economy balances, moderation tracking, and generating userinfo cards.</p>
+                    <p><strong>1.3. No Message Logging:</strong> We <strong>DO NOT</strong> log, record, or store general chat messages or Direct Messages (DMs). Message content is only processed temporarily in memory to check for command triggers or bad words (if anti-swear is enabled) and is immediately discarded.</p>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="bg-purple-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-lg shadow-purple-500/30"><i class="fas fa-cogs"></i></span>
+                    How We Use Your Data
+                </h2>
+                <div class="space-y-3 pl-11">
+                    <p><strong>2.1. Providing Features:</strong> We use your data to execute commands, apply moderation actions, and manage server-specific configurations.</p>
+                    <p><strong>2.2. Service Improvement:</strong> We may use aggregated, anonymous data (like command usage statistics) to identify bugs and improve the bot's performance.</p>
+                    <p><strong>2.3. Anti-Abuse:</strong> We monitor command execution rates to prevent spam, API abuse, and to maintain the stability of our servers.</p>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="bg-green-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-lg shadow-green-500/30"><i class="fas fa-lock"></i></span>
+                    Data Sharing and Security
+                </h2>
+                <div class="space-y-3 pl-11">
+                    <p><strong>3.1. Zero Selling Policy:</strong> We <strong>never</strong> sell, rent, or trade your personal or server data to any third-party companies, advertisers, or external entities.</p>
+                    <p><strong>3.2. Data Protection:</strong> All data is securely stored in our databases using industry-standard encryption protocols. Access to this database is strictly limited to the core development team for maintenance purposes only.</p>
+                    <p><strong>3.3. Discord Integration:</strong> As a Discord Bot, our data practices are also bound by <a href="https://discord.com/privacy" target="_blank" class="text-blue-400 hover:underline">Discord's official Privacy Policy</a>.</p>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="space-y-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <span class="bg-red-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-lg shadow-red-500/30"><i class="fas fa-trash-alt"></i></span>
+                    Data Retention and Deletion
+                </h2>
+                <div class="space-y-3 pl-11">
+                    <p><strong>4.1. Server Removal:</strong> If Moon Bot is kicked or removed from a server, we typically retain the server's configuration data for 30 days in case of accidental removal. After this period, the data may be permanently purged.</p>
+                    <p><strong>4.2. Right to be Forgotten:</strong> Server owners or individual users have the right to request immediate deletion of their data. To do this, please join our Support Server and open a data deletion ticket.</p>
+                </div>
+            </section>
+
+            <!-- Divider -->
+            <hr class="border-gray-800">
+
+            <!-- Contact Section -->
+            <div class="text-center pb-4">
+                <h3 class="text-xl font-bold text-white mb-2">Have privacy concerns?</h3>
+                <p class="text-gray-400 mb-6">If you have any questions about how we handle your data, we are here to help.</p>
+                <a href="/support" class="inline-flex items-center justify-center px-6 py-3 font-bold rounded-xl text-white bg-gray-800 hover:bg-gray-700 transition-colors border border-gray-600">
+                    <i class="fas fa-envelope mr-2"></i> Contact Support
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#04060c] py-10 border-t border-gray-800/50 w-full mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="flex items-center gap-3">
+                <img id="footer-avatar" src="" alt="Bot" class="w-8 h-8 rounded-full border border-gray-700 object-cover">
+                <span class="font-extrabold text-xl text-white tracking-wide"><span id="footer-bot-name">Moon</span> Bot</span>
+            </div>
+            
+            <div class="text-gray-500 text-sm text-center md:text-left">
+                &copy; <span id="year"></span> Created by <span id="footer-dev" class="text-blue-400 font-semibold"></span>. All rights reserved.<br>
+                <span class="text-xs">Not affiliated with or endorsed by Discord Inc.</span>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="/terms" class="text-gray-500 hover:text-white transition-colors text-sm font-medium">Terms</a>
+                <a href="/privacy" class="text-white transition-colors text-sm font-medium">Privacy</a>
+                <a href="/support" class="text-gray-500 hover:text-white transition-colors text-sm font-medium">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply Basic Info
+            const botNames = document.querySelectorAll('#nav-bot-name, #footer-bot-name');
+            botNames.forEach(el => el.innerText = BOT_CONFIG.botName);
+            
+            // Apply Images
+            document.getElementById('nav-avatar').src = BOT_CONFIG.avatarURL;
+            document.getElementById('footer-avatar').src = BOT_CONFIG.avatarURL;
+
+            // Apply Developer
+            document.getElementById('footer-dev').innerText = BOT_CONFIG.developer;
+            
+            // Set Current Year
+            document.getElementById('year').innerText = new Date().getFullYear();
+        });
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
